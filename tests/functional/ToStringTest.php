@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace PhpTypes\Ast\Tests\Functional;
 
-use PhpTypes\Ast\CallableNode;
-use PhpTypes\Ast\Dto\CallableParameter;
-use PhpTypes\Ast\Dto\StructMember;
-use PhpTypes\Ast\IdentifierNode;
-use PhpTypes\Ast\IntersectionNode;
-use PhpTypes\Ast\IntLiteralNode;
-use PhpTypes\Ast\NodeInterface;
-use PhpTypes\Ast\StringLiteralNode;
-use PhpTypes\Ast\StructNode;
-use PhpTypes\Ast\TupleNode;
-use PhpTypes\Ast\UnionNode;
+use PhpTypes\Ast\Node\CallableNode;
+use PhpTypes\Ast\Node\Dto\CallableParameter;
+use PhpTypes\Ast\Node\Dto\StructMember;
+use PhpTypes\Ast\Node\IdentifierNode;
+use PhpTypes\Ast\Node\IntersectionNode;
+use PhpTypes\Ast\Node\IntLiteralNode;
+use PhpTypes\Ast\Node\NodeInterface;
+use PhpTypes\Ast\Node\StringLiteralNode;
+use PhpTypes\Ast\Node\StructNode;
+use PhpTypes\Ast\Node\TupleNode;
+use PhpTypes\Ast\Node\UnionNode;
 use PHPUnit\Framework\TestCase;
 
 final class ToStringTest extends TestCase
@@ -103,8 +103,8 @@ final class ToStringTest extends TestCase
         ];
         yield 'Struct with a single required member' => [
             new StructNode([
-                'foo' => StructMember::required(new IdentifierNode('int')),
-            ]),
+                               'foo' => StructMember::required(new IdentifierNode('int')),
+                           ]),
             <<<EXPECTED
             array{
                 foo: int,
@@ -113,8 +113,8 @@ final class ToStringTest extends TestCase
         ];
         yield 'Struct with a single optional member' => [
             new StructNode([
-                'foo' => StructMember::optional(new IdentifierNode('int')),
-            ]),
+                               'foo' => StructMember::optional(new IdentifierNode('int')),
+                           ]),
             <<<EXPECTED
             array{
                 foo?: int,
@@ -123,9 +123,9 @@ final class ToStringTest extends TestCase
         ];
         yield 'Struct with multiple members' => [
             new StructNode([
-                'foo' => StructMember::required(new IdentifierNode('int')),
-                'bar' => StructMember::optional(new IdentifierNode('string')),
-            ]),
+                               'foo' => StructMember::required(new IdentifierNode('int')),
+                               'bar' => StructMember::optional(new IdentifierNode('string')),
+                           ]),
             <<<EXPECTED
             array{
                 foo: int,
@@ -143,9 +143,9 @@ final class ToStringTest extends TestCase
         ];
         yield 'Tuple with multiple elements' => [
             new TupleNode([
-                new IdentifierNode('int'),
-                new IdentifierNode('string'),
-            ]),
+                              new IdentifierNode('int'),
+                              new IdentifierNode('string'),
+                          ]),
             'array{int, string}',
         ];
     }

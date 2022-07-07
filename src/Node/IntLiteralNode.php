@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PhpTypes\Ast;
+namespace PhpTypes\Ast\Node;
 
 final class IntLiteralNode implements NodeInterface
 {
