@@ -1,4 +1,4 @@
-name: Check Build
+name: PHPStan
 
 on: [ push, pull_request ]
 
