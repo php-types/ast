@@ -1,0 +1,8 @@
+/*
+!/.github/
+!/.gitignore
+!/composer.json
+!/phpcs.xml
+!/phpstan.dist.neon
+!/src/
+!/tests/
