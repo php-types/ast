@@ -5,12 +5,12 @@
 >
     <testsuites>
         <testsuite name="Functional">
-            <directory>tests/Functional</directory>
+            <directory>./tests/functional</directory>
         </testsuite>
     </testsuites>
     <coverage>
         <include>
-            <directory>src</directory>
+            <directory>./src</directory>
         </include>
     </coverage>
 </phpunit>
