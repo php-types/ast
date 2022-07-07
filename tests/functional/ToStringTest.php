@@ -103,8 +103,8 @@ final class ToStringTest extends TestCase
         ];
         yield 'Struct with a single required member' => [
             new StructNode([
-                               'foo' => StructMember::required(new IdentifierNode('int')),
-                           ]),
+                'foo' => StructMember::required(new IdentifierNode('int')),
+            ]),
             <<<EXPECTED
             array{
                 foo: int,
@@ -113,8 +113,8 @@ final class ToStringTest extends TestCase
         ];
         yield 'Struct with a single optional member' => [
             new StructNode([
-                               'foo' => StructMember::optional(new IdentifierNode('int')),
-                           ]),
+                'foo' => StructMember::optional(new IdentifierNode('int')),
+            ]),
             <<<EXPECTED
             array{
                 foo?: int,
@@ -123,9 +123,9 @@ final class ToStringTest extends TestCase
         ];
         yield 'Struct with multiple members' => [
             new StructNode([
-                               'foo' => StructMember::required(new IdentifierNode('int')),
-                               'bar' => StructMember::optional(new IdentifierNode('string')),
-                           ]),
+                'foo' => StructMember::required(new IdentifierNode('int')),
+                'bar' => StructMember::optional(new IdentifierNode('string')),
+            ]),
             <<<EXPECTED
             array{
                 foo: int,
@@ -143,9 +143,9 @@ final class ToStringTest extends TestCase
         ];
         yield 'Tuple with multiple elements' => [
             new TupleNode([
-                              new IdentifierNode('int'),
-                              new IdentifierNode('string'),
-                          ]),
+                new IdentifierNode('int'),
+                new IdentifierNode('string'),
+            ]),
             'array{int, string}',
         ];
     }
