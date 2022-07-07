@@ -44,7 +44,7 @@ jobs:
         run: |
           git fetch --depth=1 origin $GITHUB_BASE_REF
           vendor/bin/infection \
-              --j$(nproc) \
+              -j$(nproc) \
               --git-diff-lines \
               --git-diff-base=origin/$GITHUB_BASE_REF \
               --min-msi=100 \
