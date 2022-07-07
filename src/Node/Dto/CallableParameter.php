@@ -2,11 +2,14 @@
 
 declare(strict_types=1);
 
-namespace PhpTypes\Ast\Dto;
+namespace PhpTypes\Ast\Node\Dto;
 
-use PhpTypes\Ast\NodeInterface;
+use PhpTypes\Ast\Node\NodeInterface;
+use Stringable;
 
-final class StructMember
+use function sprintf;
+
+final class CallableParameter implements Stringable
 {
     private function __construct(
         public readonly NodeInterface $type,
@@ -22,5 +25,10 @@ final class StructMember
     public static function optional(NodeInterface $type): self
     {
         return new self($type, true);
+    }
+
+    public function __toString(): string
+    {
+        return sprintf('%s%s', $this->type, $this->optional ? '=' : '');
     }
 }

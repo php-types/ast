@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace PhpTypes\Ast;
+namespace PhpTypes\Ast\Node;
 
-use PhpTypes\Ast\Dto\StructMember;
+use PhpTypes\Ast\Node\Dto\StructMember;
 
 final class StructNode implements NodeInterface
 {

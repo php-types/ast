@@ -2,9 +2,11 @@
 
 declare(strict_types=1);
 
-namespace PhpTypes\Ast;
+namespace PhpTypes\Ast\Node;
 
-final class UnionNode implements NodeInterface
+use function sprintf;
+
+final class IntersectionNode implements NodeInterface
 {
     public function __construct(
         public readonly NodeInterface $left,
@@ -14,6 +16,6 @@ final class UnionNode implements NodeInterface
 
     public function __toString(): string
     {
-        return sprintf('%s | %s', $this->left, $this->right);
+        return sprintf('%s & %s', $this->left, $this->right);
     }
 }
