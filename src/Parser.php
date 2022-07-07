@@ -31,6 +31,8 @@ use PhpTypes\Ast\Node\TupleNode;
 use PhpTypes\Ast\Node\UnionNode;
 use RuntimeException;
 
+use function assert;
+
 final class Parser
 {
     private function __construct()
@@ -50,19 +52,17 @@ final class Parser
 
     private static function fromTypeContext(TypeExprContext $ctx): NodeInterface
     {
-        return (match (true) {
-            $ctx instanceof CallableContext => self::fromCallableContext(...),
-            $ctx instanceof IdentifierContext => self::fromIdentifierContext(...),
-            $ctx instanceof IntersectionContext => self::fromIntersectionContext(...),
-            $ctx instanceof IntLiteralContext => self::fromIntLiteralContext(...),
-            $ctx instanceof StringLiteralContext => self::fromStringLiteralContext(...),
-            $ctx instanceof StructContext => self::fromStructContext(...),
-            $ctx instanceof TupleContext => self::fromTupleContext(...),
-            $ctx instanceof UnionContext => self::fromUnionContext(...),
+        return match (true) {
+            $ctx instanceof CallableContext => self::fromCallableContext($ctx),
+            $ctx instanceof IdentifierContext => self::fromIdentifierContext($ctx),
+            $ctx instanceof IntersectionContext => self::fromIntersectionContext($ctx),
+            $ctx instanceof IntLiteralContext => self::fromIntLiteralContext($ctx),
+            $ctx instanceof StringLiteralContext => self::fromStringLiteralContext($ctx),
+            $ctx instanceof StructContext => self::fromStructContext($ctx),
+            $ctx instanceof TupleContext => self::fromTupleContext($ctx),
+            $ctx instanceof UnionContext => self::fromUnionContext($ctx),
             default => throw new RuntimeException('Failed to parse'),
-        })(
-            $ctx,
-        );
+        };
     }
 
     private static function fromIdentifierContext(
@@ -72,7 +72,9 @@ final class Parser
         foreach ($ctx->params ?? [] as $param) {
             $params[] = self::fromTypeContext($param);
         }
-        return new IdentifierNode($ctx->name->getText(), $params);
+        $name = $ctx->name?->getText() ?? '';
+        assert($name !== '');
+        return new IdentifierNode($name, $params);
     }
 
     private static function fromTupleContext(
@@ -102,6 +104,8 @@ final class Parser
     private static function fromUnionContext(
         UnionContext $context,
     ): NodeInterface {
+        assert($context->left !== null);
+        assert($context->right !== null);
         return new UnionNode(
             self::fromTypeContext($context->left),
             self::fromTypeContext($context->right)
@@ -111,6 +115,8 @@ final class Parser
     private static function fromIntersectionContext(
         IntersectionContext $context,
     ): NodeInterface {
+        assert($context->left !== null);
+        assert($context->right !== null);
         return new IntersectionNode(
             self::fromTypeContext($context->left),
             self::fromTypeContext($context->right)
@@ -122,11 +128,13 @@ final class Parser
     ): NodeInterface {
         $params = [];
         foreach ($context->paramList()->params ?? [] as $param) {
+            assert($param->type !== null);
             $paramType = self::fromTypeContext($param->type);
             $params[] = $param->optional === null
                 ? CallableParameter::required($paramType)
                 : CallableParameter::optional($paramType);
         }
+        assert($context->return !== null);
         return new CallableNode(
             self::fromTypeContext($context->return),
             $params
@@ -138,8 +146,11 @@ final class Parser
     ): NodeInterface {
         $members = [];
         foreach ($context->memberList()->members ?? [] as $member) {
+            assert($member->value !== null);
             $type = self::fromTypeContext($member->value);
-            $members[$member->key->getText()] = $member->optional === null
+            $key = $member->key?->getText() ?? '';
+            assert($key !== '');
+            $members[$key] = $member->optional === null
                 ? StructMember::required($type)
                 : StructMember::optional($type);
         }
