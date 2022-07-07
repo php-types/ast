@@ -12,7 +12,7 @@ jobs:
         php: [ '8.1' ]
         prefer-lowest: [ '--prefer-lowest', '' ]
 
-    name: Infection on PHP ${{ matrix.php }}
+    name: Infection on PHP ${{ matrix.php }} ${{ matrix.prefer-lowest }}
 
     steps:
       - name: Checkout
