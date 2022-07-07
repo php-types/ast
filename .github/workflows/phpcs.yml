@@ -36,7 +36,7 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
 
       - name: Install Composer dependencies
-        run: composer install --prefer-dist --no-progress ${{ matrix.prefer-lowest }}
+        run: composer update --prefer-dist --no-progress ${{ matrix.prefer-lowest }}
 
       - name: Check code style
         run: vendor/bin/phpcs --parallel=$(nprocs)
