@@ -2,6 +2,7 @@
 !/.github/
 !/.gitignore
 !/composer.json
+!/infection.json
 !/phpcs.xml
 !/phpstan.dist.neon
 !/phpunit.xml
