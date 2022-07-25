@@ -14,7 +14,6 @@ use function sprintf;
 final class RoundtripTest extends TestCase
 {
     /**
-     * @param string $typeString
      * @dataProvider cases
      */
     public function testRoundtrip(string $typeString, string $expected): void
