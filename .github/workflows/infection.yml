@@ -1,9 +1,11 @@
 name: Infection
 
-on: [ push, pull_request ]
+on: [ pull_request ]
 
 jobs:
   build:
+
+    if: "!contains(github.event.pull_request.labels.*.name, 'skip-infection')"
 
     runs-on: ubuntu-latest
 

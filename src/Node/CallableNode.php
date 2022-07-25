@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace PhpTypes\Ast;
+namespace PhpTypes\Ast\Node;
 
-use PhpTypes\Ast\Dto\CallableParameter;
+use PhpTypes\Ast\Node\Dto\CallableParameter;
 
 final class CallableNode implements NodeInterface
 {

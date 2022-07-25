@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace PhpTypes\Ast\Tests\Functional;
 
-use PhpTypes\Ast\CallableNode;
-use PhpTypes\Ast\Dto\CallableParameter;
-use PhpTypes\Ast\Dto\StructMember;
-use PhpTypes\Ast\IdentifierNode;
-use PhpTypes\Ast\IntersectionNode;
-use PhpTypes\Ast\IntLiteralNode;
-use PhpTypes\Ast\NodeInterface;
-use PhpTypes\Ast\StringLiteralNode;
-use PhpTypes\Ast\StructNode;
-use PhpTypes\Ast\TupleNode;
-use PhpTypes\Ast\UnionNode;
+use PhpTypes\Ast\Node\CallableNode;
+use PhpTypes\Ast\Node\Dto\CallableParameter;
+use PhpTypes\Ast\Node\Dto\StructMember;
+use PhpTypes\Ast\Node\IdentifierNode;
+use PhpTypes\Ast\Node\IntersectionNode;
+use PhpTypes\Ast\Node\IntLiteralNode;
+use PhpTypes\Ast\Node\NodeInterface;
+use PhpTypes\Ast\Node\StringLiteralNode;
+use PhpTypes\Ast\Node\StructNode;
+use PhpTypes\Ast\Node\TupleNode;
+use PhpTypes\Ast\Node\UnionNode;
 use PHPUnit\Framework\TestCase;
 
 final class ToStringTest extends TestCase
