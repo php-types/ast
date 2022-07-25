@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace PhpTypes\Ast;
 
 use Antlr\Antlr4\Runtime\CommonTokenStream;
-use Antlr\Antlr4\Runtime\Error\Listeners\ConsoleErrorListener;
 use Antlr\Antlr4\Runtime\InputStream;
 use PhpTypes\Ast\Generated\Context\CallableContext;
 use PhpTypes\Ast\Generated\Context\IdentifierContext;
