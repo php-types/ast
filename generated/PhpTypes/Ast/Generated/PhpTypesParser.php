@@ -23,13 +23,14 @@ namespace PhpTypes\Ast\Generated {
 
 	final class PhpTypesParser extends Parser
 	{
-		public const IDENTIFIER = 1, IDENTIFIER_START = 2, IDENTIFIER_PART = 3, 
-               STRING_LITERAL = 4, CURLY_ARRAY = 5, OPEN_CALLABLE = 6, CLOSE_CALLABLE = 7, 
-               LOWERCASE_LETTER = 8, UPPERCASE_LETTER = 9, LETTER = 10, 
-               INTEGER = 11, NON_ZERO_DIGIT = 12, DIGIT = 13, LT = 14, GT = 15, 
-               UNDERSCORE = 16, COMMA = 17, DASH = 18, CURLY_CLOSE = 19, 
-               ZERO = 20, SQUOTE = 21, DQUOTE = 22, PIPE = 23, AMPERSAND = 24, 
-               LPAREN = 25, RPAREN = 26, COLON = 27, EQUAL = 28, QUESTION = 29;
+		public const INTEGER = 1, NON_ZERO_DIGIT = 2, DIGIT = 3, IDENTIFIER = 4, 
+               IDENTIFIER_START = 5, IDENTIFIER_PART = 6, STRING_LITERAL = 7, 
+               CURLY_ARRAY = 8, OPEN_CALLABLE = 9, CLOSE_CALLABLE = 10, 
+               LOWERCASE_LETTER = 11, UPPERCASE_LETTER = 12, LETTER = 13, 
+               LT = 14, GT = 15, UNDERSCORE = 16, COMMA = 17, DASH = 18, 
+               CURLY_CLOSE = 19, ZERO = 20, SQUOTE = 21, DQUOTE = 22, PIPE = 23, 
+               AMPERSAND = 24, LPAREN = 25, RPAREN = 26, COLON = 27, EQUAL = 28, 
+               QUESTION = 29;
 
 		public const RULE_typeExpr = 0, RULE_paramList = 1, RULE_param = 2, RULE_memberList = 3, 
                RULE_member = 4;
@@ -45,8 +46,8 @@ namespace PhpTypes\Ast\Generated {
 		 * @var array<string|null>
 		 */
 		private const LITERAL_NAMES = [
-		    null, null, null, null, null, "'array{'", "'callable('", "'):'", null, 
-		    null, null, null, null, null, "'<'", "'>'", "'_'", "','", "'-'", "'}'", 
+		    null, null, null, null, null, null, null, null, "'array{'", "'callable('", 
+		    "'):'", null, null, null, "'<'", "'>'", "'_'", "','", "'-'", "'}'", 
 		    "'0'", "'''", "'\"'", "'|'", "'&'", "'('", "')'", "':'", "'='", "'?'"
 		];
 
@@ -54,9 +55,9 @@ namespace PhpTypes\Ast\Generated {
 		 * @var array<string>
 		 */
 		private const SYMBOLIC_NAMES = [
-		    null, "IDENTIFIER", "IDENTIFIER_START", "IDENTIFIER_PART", "STRING_LITERAL", 
-		    "CURLY_ARRAY", "OPEN_CALLABLE", "CLOSE_CALLABLE", "LOWERCASE_LETTER", 
-		    "UPPERCASE_LETTER", "LETTER", "INTEGER", "NON_ZERO_DIGIT", "DIGIT", 
+		    null, "INTEGER", "NON_ZERO_DIGIT", "DIGIT", "IDENTIFIER", "IDENTIFIER_START", 
+		    "IDENTIFIER_PART", "STRING_LITERAL", "CURLY_ARRAY", "OPEN_CALLABLE", 
+		    "CLOSE_CALLABLE", "LOWERCASE_LETTER", "UPPERCASE_LETTER", "LETTER", 
 		    "LT", "GT", "UNDERSCORE", "COMMA", "DASH", "CURLY_CLOSE", "ZERO", 
 		    "SQUOTE", "DQUOTE", "PIPE", "AMPERSAND", "LPAREN", "RPAREN", "COLON", 
 		    "EQUAL", "QUESTION"
@@ -75,15 +76,15 @@ namespace PhpTypes\Ast\Generated {
 		    1, 4, 1, 4, 3, 4, 89, 8, 4, 1, 4, 1, 4, 1, 4, 1, 4, 0, 1, 0, 5, 0, 
 		    2, 4, 6, 8, 0, 0, 106, 0, 48, 1, 0, 0, 0, 2, 61, 1, 0, 0, 0, 4, 69, 
 		    1, 0, 0, 0, 6, 74, 1, 0, 0, 0, 8, 86, 1, 0, 0, 0, 10, 11, 6, 0, -1, 
-		    0, 11, 13, 5, 6, 0, 0, 12, 14, 3, 2, 1, 0, 13, 12, 1, 0, 0, 0, 13, 
-		    14, 1, 0, 0, 0, 14, 15, 1, 0, 0, 0, 15, 16, 5, 7, 0, 0, 16, 49, 3, 
-		    0, 0, 8, 17, 29, 5, 1, 0, 0, 18, 19, 5, 14, 0, 0, 19, 24, 3, 0, 0, 
+		    0, 11, 13, 5, 9, 0, 0, 12, 14, 3, 2, 1, 0, 13, 12, 1, 0, 0, 0, 13, 
+		    14, 1, 0, 0, 0, 14, 15, 1, 0, 0, 0, 15, 16, 5, 10, 0, 0, 16, 49, 3, 
+		    0, 0, 8, 17, 29, 5, 4, 0, 0, 18, 19, 5, 14, 0, 0, 19, 24, 3, 0, 0, 
 		    0, 20, 21, 5, 17, 0, 0, 21, 23, 3, 0, 0, 0, 22, 20, 1, 0, 0, 0, 23, 
 		    26, 1, 0, 0, 0, 24, 22, 1, 0, 0, 0, 24, 25, 1, 0, 0, 0, 25, 27, 1, 
 		    0, 0, 0, 26, 24, 1, 0, 0, 0, 27, 28, 5, 15, 0, 0, 28, 30, 1, 0, 0, 
 		    0, 29, 18, 1, 0, 0, 0, 29, 30, 1, 0, 0, 0, 30, 49, 1, 0, 0, 0, 31, 
-		    49, 5, 11, 0, 0, 32, 49, 5, 4, 0, 0, 33, 34, 5, 5, 0, 0, 34, 35, 3, 
-		    6, 3, 0, 35, 36, 5, 19, 0, 0, 36, 49, 1, 0, 0, 0, 37, 42, 5, 5, 0, 
+		    49, 5, 1, 0, 0, 32, 49, 5, 7, 0, 0, 33, 34, 5, 8, 0, 0, 34, 35, 3, 
+		    6, 3, 0, 35, 36, 5, 19, 0, 0, 36, 49, 1, 0, 0, 0, 37, 42, 5, 8, 0, 
 		    0, 38, 40, 3, 0, 0, 0, 39, 41, 5, 17, 0, 0, 40, 39, 1, 0, 0, 0, 40, 
 		    41, 1, 0, 0, 0, 41, 43, 1, 0, 0, 0, 42, 38, 1, 0, 0, 0, 43, 44, 1, 
 		    0, 0, 0, 44, 42, 1, 0, 0, 0, 44, 45, 1, 0, 0, 0, 45, 46, 1, 0, 0, 
@@ -102,7 +103,7 @@ namespace PhpTypes\Ast\Generated {
 		    77, 5, 17, 0, 0, 77, 79, 3, 8, 4, 0, 78, 76, 1, 0, 0, 0, 79, 82, 1, 
 		    0, 0, 0, 80, 78, 1, 0, 0, 0, 80, 81, 1, 0, 0, 0, 81, 84, 1, 0, 0, 
 		    0, 82, 80, 1, 0, 0, 0, 83, 85, 5, 17, 0, 0, 84, 83, 1, 0, 0, 0, 84, 
-		    85, 1, 0, 0, 0, 85, 7, 1, 0, 0, 0, 86, 88, 5, 1, 0, 0, 87, 89, 5, 
+		    85, 1, 0, 0, 0, 85, 7, 1, 0, 0, 0, 86, 88, 5, 4, 0, 0, 87, 89, 5, 
 		    29, 0, 0, 88, 87, 1, 0, 0, 0, 88, 89, 1, 0, 0, 0, 89, 90, 1, 0, 0, 
 		    0, 90, 91, 5, 27, 0, 0, 91, 92, 3, 0, 0, 0, 92, 9, 1, 0, 0, 0, 14, 
 		    13, 24, 29, 40, 44, 48, 56, 58, 66, 71, 74, 80, 84, 88];
@@ -203,7 +204,7 @@ namespace PhpTypes\Ast\Generated {
 					    $this->errorHandler->sync($this);
 					    $_la = $this->input->LA(1);
 
-					    if (((($_la) & ~0x3f) === 0 && ((1 << $_la) & ((1 << self::IDENTIFIER) | (1 << self::STRING_LITERAL) | (1 << self::CURLY_ARRAY) | (1 << self::OPEN_CALLABLE) | (1 << self::INTEGER))) !== 0)) {
+					    if (((($_la) & ~0x3f) === 0 && ((1 << $_la) & ((1 << self::INTEGER) | (1 << self::IDENTIFIER) | (1 << self::STRING_LITERAL) | (1 << self::CURLY_ARRAY) | (1 << self::OPEN_CALLABLE))) !== 0)) {
 					    	$this->setState(12);
 					    	$this->paramList();
 					    }
@@ -303,7 +304,7 @@ namespace PhpTypes\Ast\Generated {
 					    	$this->setState(44); 
 					    	$this->errorHandler->sync($this);
 					    	$_la = $this->input->LA(1);
-					    } while (((($_la) & ~0x3f) === 0 && ((1 << $_la) & ((1 << self::IDENTIFIER) | (1 << self::STRING_LITERAL) | (1 << self::CURLY_ARRAY) | (1 << self::OPEN_CALLABLE) | (1 << self::INTEGER))) !== 0));
+					    } while (((($_la) & ~0x3f) === 0 && ((1 << $_la) & ((1 << self::INTEGER) | (1 << self::IDENTIFIER) | (1 << self::STRING_LITERAL) | (1 << self::CURLY_ARRAY) | (1 << self::OPEN_CALLABLE))) !== 0));
 					    $this->setState(46);
 					    $this->match(self::CURLY_CLOSE);
 					break;

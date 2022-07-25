@@ -27,6 +27,20 @@ member
     : key=IDENTIFIER optional=QUESTION? COLON value=typeExpr
     ;
 
+INTEGER
+    : DASH? NON_ZERO_DIGIT DIGIT*
+    | ZERO
+    ;
+
+NON_ZERO_DIGIT
+    : [1-9]
+    ;
+
+DIGIT
+    : ZERO
+    | NON_ZERO_DIGIT
+    ;
+
 IDENTIFIER
     : IDENTIFIER_START IDENTIFIER_PART*
     ;
@@ -71,20 +85,6 @@ UPPERCASE_LETTER
 LETTER
     : LOWERCASE_LETTER
     | UPPERCASE_LETTER
-    ;
-
-INTEGER
-    : DASH? NON_ZERO_DIGIT DIGIT*
-    | ZERO
-    ;
-
-NON_ZERO_DIGIT
-    : [1-9]
-    ;
-
-DIGIT
-    : ZERO
-    | NON_ZERO_DIGIT
     ;
 
 LT
