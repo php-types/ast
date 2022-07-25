@@ -5,6 +5,8 @@ on: [ pull_request ]
 jobs:
   build:
 
+    if: "!contains(github.event.pull_request.labels.*.name, 'skip-infection')"
+
     runs-on: ubuntu-latest
 
     strategy:

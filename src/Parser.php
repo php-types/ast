@@ -29,10 +29,12 @@ use PhpTypes\Ast\Node\StringLiteralNode;
 use PhpTypes\Ast\Node\StructNode;
 use PhpTypes\Ast\Node\TupleNode;
 use PhpTypes\Ast\Node\UnionNode;
-use RuntimeException;
 
 use function assert;
 
+/**
+ * @phpstan-type Context CallableContext|IdentifierContext|IntersectionContext|IntLiteralContext|StringLiteralContext|StructContext|TupleContext|UnionContext
+ */
 final class Parser
 {
     private function __construct()
@@ -46,12 +48,12 @@ final class Parser
                 new PhpTypesLexer(InputStream::fromString($typeString))
             )
         );
-        $antlr->addErrorListener(new ConsoleErrorListener());
         return self::fromTypeContext($antlr->typeExpr());
     }
 
     private static function fromTypeContext(TypeExprContext $ctx): NodeInterface
     {
+        /** @var Context $ctx */
         return match (true) {
             $ctx instanceof CallableContext => self::fromCallableContext($ctx),
             $ctx instanceof IdentifierContext => self::fromIdentifierContext($ctx),
@@ -60,8 +62,7 @@ final class Parser
             $ctx instanceof StringLiteralContext => self::fromStringLiteralContext($ctx),
             $ctx instanceof StructContext => self::fromStructContext($ctx),
             $ctx instanceof TupleContext => self::fromTupleContext($ctx),
-            $ctx instanceof UnionContext => self::fromUnionContext($ctx),
-            default => throw new RuntimeException('Failed to parse'),
+            default => self::fromUnionContext($ctx),
         };
     }
 
@@ -72,7 +73,8 @@ final class Parser
         foreach ($ctx->params ?? [] as $param) {
             $params[] = self::fromTypeContext($param);
         }
-        $name = $ctx->name?->getText() ?? '';
+        assert($ctx->name !== null);
+        $name = $ctx->name->getText() ?? '';
         assert($name !== '');
         return new IdentifierNode($name, $params);
     }
@@ -148,7 +150,8 @@ final class Parser
         foreach ($context->memberList()->members ?? [] as $member) {
             assert($member->value !== null);
             $type = self::fromTypeContext($member->value);
-            $key = $member->key?->getText() ?? '';
+            assert($member->key !== null);
+            $key = $member->key->getText() ?? '';
             assert($key !== '');
             $members[$key] = $member->optional === null
                 ? StructMember::required($type)
