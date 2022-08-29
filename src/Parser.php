@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace PhpTypes\Ast;
 
 use Antlr\Antlr4\Runtime\CommonTokenStream;
+use Antlr\Antlr4\Runtime\Error\BailErrorStrategy;
+use Antlr\Antlr4\Runtime\Error\Exceptions\ParseCancellationException;
 use Antlr\Antlr4\Runtime\InputStream;
+use PhpTypes\Ast\Exception\SyntaxError;
 use PhpTypes\Ast\Generated\Context\CallableContext;
 use PhpTypes\Ast\Generated\Context\IdentifierContext;
 use PhpTypes\Ast\Generated\Context\IntersectionContext;
@@ -47,7 +50,12 @@ final class Parser
                 new PhpTypesLexer(InputStream::fromString($typeString))
             )
         );
-        return self::fromTypeContext($antlr->typeExpr());
+        $antlr->setErrorHandler(new BailErrorStrategy());
+        try {
+            return self::fromTypeContext($antlr->typeExpr());
+        } catch (ParseCancellationException $e) {
+            throw new SyntaxError('Syntax error', 0, $e);
+        }
     }
 
     private static function fromTypeContext(TypeExprContext $ctx): NodeInterface

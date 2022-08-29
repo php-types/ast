@@ -64,49 +64,51 @@ namespace PhpTypes\Ast\Generated {
 		];
 
 		private const SERIALIZED_ATN =
-			[4, 1, 29, 94, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 
+			[4, 1, 29, 97, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 
 		    7, 4, 1, 0, 1, 0, 1, 0, 3, 0, 14, 8, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 
 		    0, 1, 0, 1, 0, 5, 0, 23, 8, 0, 10, 0, 12, 0, 26, 9, 0, 1, 0, 1, 0, 
 		    3, 0, 30, 8, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 
-		    0, 3, 0, 41, 8, 0, 4, 0, 43, 8, 0, 11, 0, 12, 0, 44, 1, 0, 1, 0, 3, 
-		    0, 49, 8, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 5, 0, 57, 8, 0, 10, 
-		    0, 12, 0, 60, 9, 0, 1, 1, 1, 1, 1, 1, 5, 1, 65, 8, 1, 10, 1, 12, 1, 
-		    68, 9, 1, 1, 2, 1, 2, 3, 2, 72, 8, 2, 1, 3, 3, 3, 75, 8, 3, 1, 3, 
-		    1, 3, 5, 3, 79, 8, 3, 10, 3, 12, 3, 82, 9, 3, 1, 3, 3, 3, 85, 8, 3, 
-		    1, 4, 1, 4, 3, 4, 89, 8, 4, 1, 4, 1, 4, 1, 4, 1, 4, 0, 1, 0, 5, 0, 
-		    2, 4, 6, 8, 0, 0, 106, 0, 48, 1, 0, 0, 0, 2, 61, 1, 0, 0, 0, 4, 69, 
-		    1, 0, 0, 0, 6, 74, 1, 0, 0, 0, 8, 86, 1, 0, 0, 0, 10, 11, 6, 0, -1, 
-		    0, 11, 13, 5, 9, 0, 0, 12, 14, 3, 2, 1, 0, 13, 12, 1, 0, 0, 0, 13, 
-		    14, 1, 0, 0, 0, 14, 15, 1, 0, 0, 0, 15, 16, 5, 10, 0, 0, 16, 49, 3, 
-		    0, 0, 8, 17, 29, 5, 4, 0, 0, 18, 19, 5, 14, 0, 0, 19, 24, 3, 0, 0, 
-		    0, 20, 21, 5, 17, 0, 0, 21, 23, 3, 0, 0, 0, 22, 20, 1, 0, 0, 0, 23, 
-		    26, 1, 0, 0, 0, 24, 22, 1, 0, 0, 0, 24, 25, 1, 0, 0, 0, 25, 27, 1, 
-		    0, 0, 0, 26, 24, 1, 0, 0, 0, 27, 28, 5, 15, 0, 0, 28, 30, 1, 0, 0, 
-		    0, 29, 18, 1, 0, 0, 0, 29, 30, 1, 0, 0, 0, 30, 49, 1, 0, 0, 0, 31, 
-		    49, 5, 1, 0, 0, 32, 49, 5, 7, 0, 0, 33, 34, 5, 8, 0, 0, 34, 35, 3, 
-		    6, 3, 0, 35, 36, 5, 19, 0, 0, 36, 49, 1, 0, 0, 0, 37, 42, 5, 8, 0, 
-		    0, 38, 40, 3, 0, 0, 0, 39, 41, 5, 17, 0, 0, 40, 39, 1, 0, 0, 0, 40, 
-		    41, 1, 0, 0, 0, 41, 43, 1, 0, 0, 0, 42, 38, 1, 0, 0, 0, 43, 44, 1, 
-		    0, 0, 0, 44, 42, 1, 0, 0, 0, 44, 45, 1, 0, 0, 0, 45, 46, 1, 0, 0, 
-		    0, 46, 47, 5, 19, 0, 0, 47, 49, 1, 0, 0, 0, 48, 10, 1, 0, 0, 0, 48, 
-		    17, 1, 0, 0, 0, 48, 31, 1, 0, 0, 0, 48, 32, 1, 0, 0, 0, 48, 33, 1, 
-		    0, 0, 0, 48, 37, 1, 0, 0, 0, 49, 58, 1, 0, 0, 0, 50, 51, 10, 6, 0, 
-		    0, 51, 52, 5, 24, 0, 0, 52, 57, 3, 0, 0, 7, 53, 54, 10, 1, 0, 0, 54, 
-		    55, 5, 23, 0, 0, 55, 57, 3, 0, 0, 2, 56, 50, 1, 0, 0, 0, 56, 53, 1, 
-		    0, 0, 0, 57, 60, 1, 0, 0, 0, 58, 56, 1, 0, 0, 0, 58, 59, 1, 0, 0, 
-		    0, 59, 1, 1, 0, 0, 0, 60, 58, 1, 0, 0, 0, 61, 66, 3, 4, 2, 0, 62, 
-		    63, 5, 17, 0, 0, 63, 65, 3, 4, 2, 0, 64, 62, 1, 0, 0, 0, 65, 68, 1, 
-		    0, 0, 0, 66, 64, 1, 0, 0, 0, 66, 67, 1, 0, 0, 0, 67, 3, 1, 0, 0, 0, 
-		    68, 66, 1, 0, 0, 0, 69, 71, 3, 0, 0, 0, 70, 72, 5, 28, 0, 0, 71, 70, 
-		    1, 0, 0, 0, 71, 72, 1, 0, 0, 0, 72, 5, 1, 0, 0, 0, 73, 75, 3, 8, 4, 
-		    0, 74, 73, 1, 0, 0, 0, 74, 75, 1, 0, 0, 0, 75, 80, 1, 0, 0, 0, 76, 
-		    77, 5, 17, 0, 0, 77, 79, 3, 8, 4, 0, 78, 76, 1, 0, 0, 0, 79, 82, 1, 
-		    0, 0, 0, 80, 78, 1, 0, 0, 0, 80, 81, 1, 0, 0, 0, 81, 84, 1, 0, 0, 
-		    0, 82, 80, 1, 0, 0, 0, 83, 85, 5, 17, 0, 0, 84, 83, 1, 0, 0, 0, 84, 
-		    85, 1, 0, 0, 0, 85, 7, 1, 0, 0, 0, 86, 88, 5, 4, 0, 0, 87, 89, 5, 
-		    29, 0, 0, 88, 87, 1, 0, 0, 0, 88, 89, 1, 0, 0, 0, 89, 90, 1, 0, 0, 
-		    0, 90, 91, 5, 27, 0, 0, 91, 92, 3, 0, 0, 0, 92, 9, 1, 0, 0, 0, 14, 
-		    13, 24, 29, 40, 44, 48, 56, 58, 66, 71, 74, 80, 84, 88];
+		    0, 1, 0, 5, 0, 42, 8, 0, 10, 0, 12, 0, 45, 9, 0, 1, 0, 3, 0, 48, 8, 
+		    0, 1, 0, 1, 0, 3, 0, 52, 8, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 
+		    5, 0, 60, 8, 0, 10, 0, 12, 0, 63, 9, 0, 1, 1, 1, 1, 1, 1, 5, 1, 68, 
+		    8, 1, 10, 1, 12, 1, 71, 9, 1, 1, 2, 1, 2, 3, 2, 75, 8, 2, 1, 3, 3, 
+		    3, 78, 8, 3, 1, 3, 1, 3, 5, 3, 82, 8, 3, 10, 3, 12, 3, 85, 9, 3, 1, 
+		    3, 3, 3, 88, 8, 3, 1, 4, 1, 4, 3, 4, 92, 8, 4, 1, 4, 1, 4, 1, 4, 1, 
+		    4, 0, 1, 0, 5, 0, 2, 4, 6, 8, 0, 0, 109, 0, 51, 1, 0, 0, 0, 2, 64, 
+		    1, 0, 0, 0, 4, 72, 1, 0, 0, 0, 6, 77, 1, 0, 0, 0, 8, 89, 1, 0, 0, 
+		    0, 10, 11, 6, 0, -1, 0, 11, 13, 5, 9, 0, 0, 12, 14, 3, 2, 1, 0, 13, 
+		    12, 1, 0, 0, 0, 13, 14, 1, 0, 0, 0, 14, 15, 1, 0, 0, 0, 15, 16, 5, 
+		    10, 0, 0, 16, 52, 3, 0, 0, 8, 17, 29, 5, 4, 0, 0, 18, 19, 5, 14, 0, 
+		    0, 19, 24, 3, 0, 0, 0, 20, 21, 5, 17, 0, 0, 21, 23, 3, 0, 0, 0, 22, 
+		    20, 1, 0, 0, 0, 23, 26, 1, 0, 0, 0, 24, 22, 1, 0, 0, 0, 24, 25, 1, 
+		    0, 0, 0, 25, 27, 1, 0, 0, 0, 26, 24, 1, 0, 0, 0, 27, 28, 5, 15, 0, 
+		    0, 28, 30, 1, 0, 0, 0, 29, 18, 1, 0, 0, 0, 29, 30, 1, 0, 0, 0, 30, 
+		    52, 1, 0, 0, 0, 31, 52, 5, 1, 0, 0, 32, 52, 5, 7, 0, 0, 33, 34, 5, 
+		    8, 0, 0, 34, 35, 3, 6, 3, 0, 35, 36, 5, 19, 0, 0, 36, 52, 1, 0, 0, 
+		    0, 37, 38, 5, 8, 0, 0, 38, 43, 3, 0, 0, 0, 39, 40, 5, 17, 0, 0, 40, 
+		    42, 3, 0, 0, 0, 41, 39, 1, 0, 0, 0, 42, 45, 1, 0, 0, 0, 43, 41, 1, 
+		    0, 0, 0, 43, 44, 1, 0, 0, 0, 44, 47, 1, 0, 0, 0, 45, 43, 1, 0, 0, 
+		    0, 46, 48, 5, 17, 0, 0, 47, 46, 1, 0, 0, 0, 47, 48, 1, 0, 0, 0, 48, 
+		    49, 1, 0, 0, 0, 49, 50, 5, 19, 0, 0, 50, 52, 1, 0, 0, 0, 51, 10, 1, 
+		    0, 0, 0, 51, 17, 1, 0, 0, 0, 51, 31, 1, 0, 0, 0, 51, 32, 1, 0, 0, 
+		    0, 51, 33, 1, 0, 0, 0, 51, 37, 1, 0, 0, 0, 52, 61, 1, 0, 0, 0, 53, 
+		    54, 10, 6, 0, 0, 54, 55, 5, 24, 0, 0, 55, 60, 3, 0, 0, 7, 56, 57, 
+		    10, 1, 0, 0, 57, 58, 5, 23, 0, 0, 58, 60, 3, 0, 0, 2, 59, 53, 1, 0, 
+		    0, 0, 59, 56, 1, 0, 0, 0, 60, 63, 1, 0, 0, 0, 61, 59, 1, 0, 0, 0, 
+		    61, 62, 1, 0, 0, 0, 62, 1, 1, 0, 0, 0, 63, 61, 1, 0, 0, 0, 64, 69, 
+		    3, 4, 2, 0, 65, 66, 5, 17, 0, 0, 66, 68, 3, 4, 2, 0, 67, 65, 1, 0, 
+		    0, 0, 68, 71, 1, 0, 0, 0, 69, 67, 1, 0, 0, 0, 69, 70, 1, 0, 0, 0, 
+		    70, 3, 1, 0, 0, 0, 71, 69, 1, 0, 0, 0, 72, 74, 3, 0, 0, 0, 73, 75, 
+		    5, 28, 0, 0, 74, 73, 1, 0, 0, 0, 74, 75, 1, 0, 0, 0, 75, 5, 1, 0, 
+		    0, 0, 76, 78, 3, 8, 4, 0, 77, 76, 1, 0, 0, 0, 77, 78, 1, 0, 0, 0, 
+		    78, 83, 1, 0, 0, 0, 79, 80, 5, 17, 0, 0, 80, 82, 3, 8, 4, 0, 81, 79, 
+		    1, 0, 0, 0, 82, 85, 1, 0, 0, 0, 83, 81, 1, 0, 0, 0, 83, 84, 1, 0, 
+		    0, 0, 84, 87, 1, 0, 0, 0, 85, 83, 1, 0, 0, 0, 86, 88, 5, 17, 0, 0, 
+		    87, 86, 1, 0, 0, 0, 87, 88, 1, 0, 0, 0, 88, 7, 1, 0, 0, 0, 89, 91, 
+		    5, 4, 0, 0, 90, 92, 5, 29, 0, 0, 91, 90, 1, 0, 0, 0, 91, 92, 1, 0, 
+		    0, 0, 92, 93, 1, 0, 0, 0, 93, 94, 5, 27, 0, 0, 94, 95, 3, 0, 0, 0, 
+		    95, 9, 1, 0, 0, 0, 14, 13, 24, 29, 43, 47, 51, 59, 61, 69, 74, 77, 
+		    83, 87, 91];
 		protected static $atn;
 		protected static $decisionToDFA;
 		protected static $sharedContextCache;
@@ -189,7 +191,7 @@ namespace PhpTypes\Ast\Generated {
 
 			try {
 				$this->enterOuterAlt($localContext, 1);
-				$this->setState(48);
+				$this->setState(51);
 				$this->errorHandler->sync($this);
 
 				switch ($this->getInterpreter()->adaptivePredict($this->input, 5, $this->ctx)) {
@@ -285,32 +287,43 @@ namespace PhpTypes\Ast\Generated {
 					    $previousContext = $localContext;
 					    $this->setState(37);
 					    $this->match(self::CURLY_ARRAY);
-					    $this->setState(42); 
+
+					    $this->setState(38);
+					    $localContext->typeExpr = $this->recursiveTypeExpr(0);
+					    $localContext->elements[] = $localContext->typeExpr;
+					    $this->setState(43);
 					    $this->errorHandler->sync($this);
 
-					    $_la = $this->input->LA(1);
-					    do {
-					    	$this->setState(38);
-					    	$localContext->typeExpr = $this->recursiveTypeExpr(0);
-					    	$localContext->elements[] = $localContext->typeExpr;
-					    	$this->setState(40);
-					    	$this->errorHandler->sync($this);
-					    	$_la = $this->input->LA(1);
+					    $alt = $this->getInterpreter()->adaptivePredict($this->input, 3, $this->ctx);
 
-					    	if ($_la === self::COMMA) {
+					    while ($alt !== 2 && $alt !== ATN::INVALID_ALT_NUMBER) {
+					    	if ($alt === 1) {
 					    		$this->setState(39);
 					    		$this->match(self::COMMA);
+					    		$this->setState(40);
+					    		$localContext->typeExpr = $this->recursiveTypeExpr(0);
+					    		$localContext->elements[] = $localContext->typeExpr; 
 					    	}
-					    	$this->setState(44); 
+
+					    	$this->setState(45);
 					    	$this->errorHandler->sync($this);
-					    	$_la = $this->input->LA(1);
-					    } while (((($_la) & ~0x3f) === 0 && ((1 << $_la) & ((1 << self::INTEGER) | (1 << self::IDENTIFIER) | (1 << self::STRING_LITERAL) | (1 << self::CURLY_ARRAY) | (1 << self::OPEN_CALLABLE))) !== 0));
-					    $this->setState(46);
+
+					    	$alt = $this->getInterpreter()->adaptivePredict($this->input, 3, $this->ctx);
+					    }
+					    $this->setState(47);
+					    $this->errorHandler->sync($this);
+					    $_la = $this->input->LA(1);
+
+					    if ($_la === self::COMMA) {
+					    	$this->setState(46);
+					    	$this->match(self::COMMA);
+					    }
+					    $this->setState(49);
 					    $this->match(self::CURLY_CLOSE);
 					break;
 				}
 				$this->ctx->stop = $this->input->LT(-1);
-				$this->setState(58);
+				$this->setState(61);
 				$this->errorHandler->sync($this);
 
 				$alt = $this->getInterpreter()->adaptivePredict($this->input, 7, $this->ctx);
@@ -322,7 +335,7 @@ namespace PhpTypes\Ast\Generated {
 						}
 
 						$previousContext = $localContext;
-						$this->setState(56);
+						$this->setState(59);
 						$this->errorHandler->sync($this);
 
 						switch ($this->getInterpreter()->adaptivePredict($this->input, 6, $this->ctx)) {
@@ -331,14 +344,14 @@ namespace PhpTypes\Ast\Generated {
 							    $localContext->left = $previousContext;
 
 							    $this->pushNewRecursionContext($localContext, $startState, self::RULE_typeExpr);
-							    $this->setState(50);
+							    $this->setState(53);
 
 							    if (!($this->precpred($this->ctx, 6))) {
 							        throw new FailedPredicateException($this, "\\\$this->precpred(\\\$this->ctx, 6)");
 							    }
-							    $this->setState(51);
+							    $this->setState(54);
 							    $this->match(self::AMPERSAND);
-							    $this->setState(52);
+							    $this->setState(55);
 							    $localContext->right = $this->recursiveTypeExpr(7);
 							break;
 
@@ -347,20 +360,20 @@ namespace PhpTypes\Ast\Generated {
 							    $localContext->left = $previousContext;
 
 							    $this->pushNewRecursionContext($localContext, $startState, self::RULE_typeExpr);
-							    $this->setState(53);
+							    $this->setState(56);
 
 							    if (!($this->precpred($this->ctx, 1))) {
 							        throw new FailedPredicateException($this, "\\\$this->precpred(\\\$this->ctx, 1)");
 							    }
-							    $this->setState(54);
+							    $this->setState(57);
 							    $this->match(self::PIPE);
-							    $this->setState(55);
+							    $this->setState(58);
 							    $localContext->right = $this->recursiveTypeExpr(2);
 							break;
 						} 
 					}
 
-					$this->setState(60);
+					$this->setState(63);
 					$this->errorHandler->sync($this);
 
 					$alt = $this->getInterpreter()->adaptivePredict($this->input, 7, $this->ctx);
@@ -387,20 +400,20 @@ namespace PhpTypes\Ast\Generated {
 
 		    try {
 		        $this->enterOuterAlt($localContext, 1);
-		        $this->setState(61);
+		        $this->setState(64);
 		        $localContext->param = $this->param();
 		        $localContext->params[] = $localContext->param;
-		        $this->setState(66);
+		        $this->setState(69);
 		        $this->errorHandler->sync($this);
 
 		        $_la = $this->input->LA(1);
 		        while ($_la === self::COMMA) {
-		        	$this->setState(62);
+		        	$this->setState(65);
 		        	$this->match(self::COMMA);
-		        	$this->setState(63);
+		        	$this->setState(66);
 		        	$localContext->param = $this->param();
 		        	$localContext->params[] = $localContext->param;
-		        	$this->setState(68);
+		        	$this->setState(71);
 		        	$this->errorHandler->sync($this);
 		        	$_la = $this->input->LA(1);
 		        }
@@ -426,14 +439,14 @@ namespace PhpTypes\Ast\Generated {
 
 		    try {
 		        $this->enterOuterAlt($localContext, 1);
-		        $this->setState(69);
+		        $this->setState(72);
 		        $localContext->type = $this->recursiveTypeExpr(0);
-		        $this->setState(71);
+		        $this->setState(74);
 		        $this->errorHandler->sync($this);
 		        $_la = $this->input->LA(1);
 
 		        if ($_la === self::EQUAL) {
-		        	$this->setState(70);
+		        	$this->setState(73);
 		        	$localContext->optional = $this->match(self::EQUAL);
 		        }
 		    } catch (RecognitionException $exception) {
@@ -458,40 +471,40 @@ namespace PhpTypes\Ast\Generated {
 
 		    try {
 		        $this->enterOuterAlt($localContext, 1);
-		        $this->setState(74);
+		        $this->setState(77);
 		        $this->errorHandler->sync($this);
 		        $_la = $this->input->LA(1);
 
 		        if ($_la === self::IDENTIFIER) {
-		        	$this->setState(73);
+		        	$this->setState(76);
 		        	$localContext->member = $this->member();
 		        	$localContext->members[] = $localContext->member;
 		        }
-		        $this->setState(80);
+		        $this->setState(83);
 		        $this->errorHandler->sync($this);
 
 		        $alt = $this->getInterpreter()->adaptivePredict($this->input, 11, $this->ctx);
 
 		        while ($alt !== 2 && $alt !== ATN::INVALID_ALT_NUMBER) {
 		        	if ($alt === 1) {
-		        		$this->setState(76);
+		        		$this->setState(79);
 		        		$this->match(self::COMMA);
-		        		$this->setState(77);
+		        		$this->setState(80);
 		        		$localContext->member = $this->member();
 		        		$localContext->members[] = $localContext->member; 
 		        	}
 
-		        	$this->setState(82);
+		        	$this->setState(85);
 		        	$this->errorHandler->sync($this);
 
 		        	$alt = $this->getInterpreter()->adaptivePredict($this->input, 11, $this->ctx);
 		        }
-		        $this->setState(84);
+		        $this->setState(87);
 		        $this->errorHandler->sync($this);
 		        $_la = $this->input->LA(1);
 
 		        if ($_la === self::COMMA) {
-		        	$this->setState(83);
+		        	$this->setState(86);
 		        	$this->match(self::COMMA);
 		        }
 		    } catch (RecognitionException $exception) {
@@ -516,19 +529,19 @@ namespace PhpTypes\Ast\Generated {
 
 		    try {
 		        $this->enterOuterAlt($localContext, 1);
-		        $this->setState(86);
+		        $this->setState(89);
 		        $localContext->key = $this->match(self::IDENTIFIER);
-		        $this->setState(88);
+		        $this->setState(91);
 		        $this->errorHandler->sync($this);
 		        $_la = $this->input->LA(1);
 
 		        if ($_la === self::QUESTION) {
-		        	$this->setState(87);
+		        	$this->setState(90);
 		        	$localContext->optional = $this->match(self::QUESTION);
 		        }
-		        $this->setState(90);
+		        $this->setState(93);
 		        $this->match(self::COLON);
-		        $this->setState(91);
+		        $this->setState(94);
 		        $localContext->value = $this->recursiveTypeExpr(0);
 		    } catch (RecognitionException $exception) {
 		        $localContext->exception = $exception;

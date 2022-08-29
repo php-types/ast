@@ -7,7 +7,7 @@ typeExpr
     | INTEGER                                                                                      #IntLiteral
     | STRING_LITERAL                                                                               #StringLiteral
     | CURLY_ARRAY memberList CURLY_CLOSE                                                           #Struct
-    | CURLY_ARRAY (elements+=typeExpr COMMA?)+ CURLY_CLOSE                                         #Tuple
+    | CURLY_ARRAY (elements+=typeExpr) (COMMA elements+=typeExpr)* COMMA? CURLY_CLOSE              #Tuple
     | left=typeExpr PIPE right=typeExpr                                                            #Union
     ;
 
