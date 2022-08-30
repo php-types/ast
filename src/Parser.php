@@ -58,8 +58,9 @@ final class Parser
         }
     }
 
-    private static function fromTypeContext(TypeExprContext $ctx): NodeInterface
-    {
+    private static function fromTypeContext(
+        TypeExprContext $ctx,
+    ): CallableNode|IdentifierNode|IntersectionNode|IntLiteralNode|StringLiteralNode|StructNode|TupleNode|UnionNode {
         /** @var Context $ctx */
         return match (true) {
             $ctx instanceof CallableContext => self::fromCallableContext($ctx),
@@ -75,7 +76,7 @@ final class Parser
 
     private static function fromIdentifierContext(
         IdentifierContext $ctx,
-    ): NodeInterface {
+    ): IdentifierNode {
         $params = [];
         foreach ($ctx->params ?? [] as $param) {
             $params[] = self::fromTypeContext($param);
@@ -88,7 +89,7 @@ final class Parser
 
     private static function fromTupleContext(
         TupleContext $context,
-    ): NodeInterface {
+    ): TupleNode {
         $params = [];
         foreach ($context->elements ?? [] as $param) {
             $params[] = self::fromTypeContext($param);
@@ -98,13 +99,13 @@ final class Parser
 
     private static function fromIntLiteralContext(
         IntLiteralContext $context,
-    ): NodeInterface {
+    ): IntLiteralNode {
         return new IntLiteralNode((int)$context->getText());
     }
 
     private static function fromStringLiteralContext(
         StringLiteralContext $context,
-    ): NodeInterface {
+    ): StringLiteralNode {
         $text = $context->getText();
         $text = substr($text, 1, -1);
         return new StringLiteralNode($text);
@@ -112,7 +113,7 @@ final class Parser
 
     private static function fromUnionContext(
         UnionContext $context,
-    ): NodeInterface {
+    ): UnionNode {
         assert($context->left !== null);
         assert($context->right !== null);
         return new UnionNode(
@@ -123,7 +124,7 @@ final class Parser
 
     private static function fromIntersectionContext(
         IntersectionContext $context,
-    ): NodeInterface {
+    ): IntersectionNode {
         assert($context->left !== null);
         assert($context->right !== null);
         return new IntersectionNode(
@@ -134,7 +135,7 @@ final class Parser
 
     private static function fromCallableContext(
         CallableContext $context,
-    ): NodeInterface {
+    ): CallableNode {
         $params = [];
         foreach ($context->paramList()->params ?? [] as $param) {
             assert($param->type !== null);
@@ -152,7 +153,7 @@ final class Parser
 
     private static function fromStructContext(
         StructContext $context,
-    ): NodeInterface {
+    ): StructNode {
         $members = [];
         foreach ($context->memberList()->members ?? [] as $member) {
             assert($member->value !== null);
