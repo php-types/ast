@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace PhpTypes\Ast;
 
 use Antlr\Antlr4\Runtime\CommonTokenStream;
+use Antlr\Antlr4\Runtime\Error\BailErrorStrategy;
+use Antlr\Antlr4\Runtime\Error\Exceptions\ParseCancellationException;
 use Antlr\Antlr4\Runtime\InputStream;
+use PhpTypes\Ast\Exception\SyntaxError;
 use PhpTypes\Ast\Generated\Context\CallableContext;
 use PhpTypes\Ast\Generated\Context\IdentifierContext;
 use PhpTypes\Ast\Generated\Context\IntersectionContext;
@@ -47,12 +50,22 @@ final class Parser
                 new PhpTypesLexer(InputStream::fromString($typeString))
             )
         );
-        return self::fromTypeContext($antlr->typeExpr());
+        $antlr->setErrorHandler(new BailErrorStrategy());
+        try {
+            /** @var Context $ctx */
+            $ctx = $antlr->typeExpr();
+            return self::fromTypeContext($ctx);
+        } catch (ParseCancellationException $e) {
+            throw new SyntaxError('Syntax error', previous: $e);
+        }
     }
 
-    private static function fromTypeContext(TypeExprContext $ctx): NodeInterface
-    {
-        /** @var Context $ctx */
+    /**
+     * @param Context $ctx
+     */
+    private static function fromTypeContext(
+        TypeExprContext $ctx,
+    ): CallableNode|IdentifierNode|IntersectionNode|IntLiteralNode|StringLiteralNode|StructNode|TupleNode|UnionNode {
         return match (true) {
             $ctx instanceof CallableContext => self::fromCallableContext($ctx),
             $ctx instanceof IdentifierContext => self::fromIdentifierContext($ctx),
@@ -67,8 +80,9 @@ final class Parser
 
     private static function fromIdentifierContext(
         IdentifierContext $ctx,
-    ): NodeInterface {
+    ): IdentifierNode {
         $params = [];
+        /** @var Context $param */
         foreach ($ctx->params ?? [] as $param) {
             $params[] = self::fromTypeContext($param);
         }
@@ -80,8 +94,9 @@ final class Parser
 
     private static function fromTupleContext(
         TupleContext $context,
-    ): NodeInterface {
+    ): TupleNode {
         $params = [];
+        /** @var Context $param */
         foreach ($context->elements ?? [] as $param) {
             $params[] = self::fromTypeContext($param);
         }
@@ -90,13 +105,13 @@ final class Parser
 
     private static function fromIntLiteralContext(
         IntLiteralContext $context,
-    ): NodeInterface {
+    ): IntLiteralNode {
         return new IntLiteralNode((int)$context->getText());
     }
 
     private static function fromStringLiteralContext(
         StringLiteralContext $context,
-    ): NodeInterface {
+    ): StringLiteralNode {
         $text = $context->getText();
         $text = substr($text, 1, -1);
         return new StringLiteralNode($text);
@@ -104,51 +119,58 @@ final class Parser
 
     private static function fromUnionContext(
         UnionContext $context,
-    ): NodeInterface {
-        assert($context->left !== null);
-        assert($context->right !== null);
+    ): UnionNode {
+        /** @var Context $left */
+        $left = $context->left;
+        /** @var Context $right */
+        $right = $context->right;
         return new UnionNode(
-            self::fromTypeContext($context->left),
-            self::fromTypeContext($context->right)
+            self::fromTypeContext($left),
+            self::fromTypeContext($right)
         );
     }
 
     private static function fromIntersectionContext(
         IntersectionContext $context,
-    ): NodeInterface {
-        assert($context->left !== null);
-        assert($context->right !== null);
+    ): IntersectionNode {
+        /** @var Context $left */
+        $left = $context->left;
+        /** @var Context $right */
+        $right = $context->right;
         return new IntersectionNode(
-            self::fromTypeContext($context->left),
-            self::fromTypeContext($context->right)
+            self::fromTypeContext($left),
+            self::fromTypeContext($right)
         );
     }
 
     private static function fromCallableContext(
         CallableContext $context,
-    ): NodeInterface {
+    ): CallableNode {
         $params = [];
         foreach ($context->paramList()->params ?? [] as $param) {
-            assert($param->type !== null);
-            $paramType = self::fromTypeContext($param->type);
+            /** @var Context $paramType */
+            $paramType = $param->type;
+            $paramType = self::fromTypeContext($paramType);
             $params[] = $param->optional === null
                 ? CallableParameter::required($paramType)
                 : CallableParameter::optional($paramType);
         }
-        assert($context->return !== null);
+        /** @var Context $contextReturn */
+        $contextReturn = $context->return;
         return new CallableNode(
-            self::fromTypeContext($context->return),
+            self::fromTypeContext($contextReturn),
             $params
         );
     }
 
     private static function fromStructContext(
         StructContext $context,
-    ): NodeInterface {
+    ): StructNode {
         $members = [];
         foreach ($context->memberList()->members ?? [] as $member) {
-            assert($member->value !== null);
-            $type = self::fromTypeContext($member->value);
+            /** @var Context $memberValue */
+            $memberValue = $member->value;
+            $type = self::fromTypeContext($memberValue);
             assert($member->key !== null);
             $key = $member->key->getText() ?? '';
             assert($key !== '');
