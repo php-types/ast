@@ -54,7 +54,7 @@ final class Parser
         try {
             return self::fromTypeContext($antlr->typeExpr());
         } catch (ParseCancellationException $e) {
-            throw new SyntaxError('Syntax error', 0, $e);
+            throw new SyntaxError('Syntax error', previous: $e);
         }
     }
 
