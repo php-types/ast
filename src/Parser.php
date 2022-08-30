@@ -58,10 +58,12 @@ final class Parser
         }
     }
 
+    /**
+     * @param Context $ctx
+     */
     private static function fromTypeContext(
         TypeExprContext $ctx,
     ): CallableNode|IdentifierNode|IntersectionNode|IntLiteralNode|StringLiteralNode|StructNode|TupleNode|UnionNode {
-        /** @var Context $ctx */
         return match (true) {
             $ctx instanceof CallableContext => self::fromCallableContext($ctx),
             $ctx instanceof IdentifierContext => self::fromIdentifierContext($ctx),
