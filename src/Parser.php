@@ -26,7 +26,6 @@ use PhpTypes\Ast\Node\Dto\StructMember;
 use PhpTypes\Ast\Node\IdentifierNode;
 use PhpTypes\Ast\Node\IntersectionNode;
 use PhpTypes\Ast\Node\IntLiteralNode;
-use PhpTypes\Ast\Node\NodeInterface;
 use PhpTypes\Ast\Node\StringLiteralNode;
 use PhpTypes\Ast\Node\StructNode;
 use PhpTypes\Ast\Node\TupleNode;
@@ -43,8 +42,9 @@ final class Parser
     {
     }
 
-    public static function parse(string $typeString): NodeInterface
-    {
+    public static function parse(
+        string $typeString,
+    ): CallableNode|IdentifierNode|IntersectionNode|IntLiteralNode|StringLiteralNode|StructNode|TupleNode|UnionNode {
         $antlr = new PhpTypesParser(
             new CommonTokenStream(
                 new PhpTypesLexer(InputStream::fromString($typeString))
