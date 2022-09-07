@@ -6,6 +6,9 @@ namespace PhpTypes\Ast\Node;
 
 use PhpTypes\Ast\Node\Dto\StructMember;
 
+use function explode;
+use function implode;
+
 final class StructNode implements NodeInterface
 {
     /**
@@ -19,11 +22,18 @@ final class StructNode implements NodeInterface
     {
         $members = [];
         foreach ($this->members as $name => $member) {
+            $typeLines = explode("\n", (string)$member->type);
+            foreach ($typeLines as $i => &$line) {
+                if ($i === 0) {
+                    continue;
+                }
+                $line = '    ' . $line;
+            }
             $members[] = sprintf(
                 '    %s%s: %s,',
                 $name,
                 $member->optional ? '?' : '',
-                $member->type,
+                implode("\n", $typeLines),
             );
         }
         if ($members === []) {
