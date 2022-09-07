@@ -64,6 +64,13 @@ final class RoundtripTest extends TestCase
                 bar?: string,
             }
             PHP,
+            <<<'PHP'
+            array{
+                nested: array{
+                    foo: string,
+                },
+            }
+            PHP,
             // Tuple
             'array{string}',
             'array{string, int}',
