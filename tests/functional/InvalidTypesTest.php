@@ -43,5 +43,10 @@ final class InvalidTypesTest extends TestCase
         yield 'Missing left side in intersection' => ['& string'];
         yield 'Missing left side in union' => ['| string'];
         yield 'Missing type in parameter list' => ['callable(string, , int): void'];
+        yield 'Unexpected closing brace in type argument list' => ['array<string), int>'];
+        yield 'Unexpected end of struct member list after comma' => ['array{foo: string,'];
+        yield 'Unexpected end of struct member list after key' => ['array{foo'];
+        yield 'Struct key with type argument' => ['array{list<int>: string}'];
+        yield 'Tuple as struct member key' => ['array{array{bool}: string}'];
     }
 }

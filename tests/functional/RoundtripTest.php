@@ -6,7 +6,6 @@ namespace PhpTypes\Ast\Tests\Functional;
 
 use PhpTypes\Ast\Parser;
 use PHPUnit\Framework\TestCase;
-
 use function is_int;
 use function is_numeric;
 use function sprintf;
@@ -30,6 +29,7 @@ final class RoundtripTest extends TestCase
     {
         $cases = [
             // Callable
+            'callable' => 'callable(): mixed',
             'callable(): void',
             'callable(string): void',
             'callable(string, int): void',
