@@ -16,6 +16,7 @@ use PhpTypes\Ast\Node\StringLiteralNode;
 use PhpTypes\Ast\Node\StructNode;
 use PhpTypes\Ast\Node\TupleNode;
 use PhpTypes\Ast\Node\UnionNode;
+
 use function assert;
 use function in_array;
 use function mb_str_split;
@@ -25,13 +26,13 @@ final class Parser
 {
     public static function parse(string $typeString): NodeInterface
     {
-        return self::parseTokens(
-            new Cursor(
-                Lexer::lex(
-                    new Cursor(mb_str_split($typeString))
-                )
-            )
-        );
+        $tokens = new Cursor(Lexer::lex(new Cursor(mb_str_split($typeString))));
+        $node = self::parseTokens($tokens);
+        $token = $tokens->peek();
+        if ($token !== null) {
+            throw new SyntaxError(sprintf('Unexpected token "%s"', $token));
+        }
+        return $node;
     }
 
     /**
@@ -52,7 +53,7 @@ final class Parser
                     'array' => self::parseArray($tokens),
                     default => self::parseIdentifier($token->contents, $tokens),
                 },
-                TokenKind::Integer => new IntLiteralNode((int)$token->contents),
+                TokenKind::Integer, TokenKind::Minus => self::parseIntLiteral($token, $tokens),
                 TokenKind::String => new StringLiteralNode($token->contents),
                 TokenKind::Pipe => self::parseUnion($node, $tokens),
                 TokenKind::Ampersand => self::parseIntersection($node, $tokens),
@@ -318,5 +319,20 @@ final class Parser
             throw new SyntaxError('Unexpected ampersand');
         }
         return new UnionNode($node, self::parseTokens($tokens));
+    }
+
+    private static function parseIntLiteral(Token $token, Cursor $tokens): IntLiteralNode
+    {
+        if ($token->kind === TokenKind::Integer) {
+            return new IntLiteralNode((int)$token->contents);
+        }
+        $token = $tokens->consume();
+        if ($token === null) {
+            throw new SyntaxError('Unexpected end of input');
+        }
+        if ($token->kind !== TokenKind::Integer) {
+            throw new SyntaxError(sprintf('Expected integer, got %s', $token));
+        }
+        return new IntLiteralNode(-(int)$token->contents);
     }
 }

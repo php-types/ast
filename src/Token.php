@@ -92,6 +92,11 @@ final class Token implements Stringable
         return new self(TokenKind::Equals);
     }
 
+    public static function minus(): self
+    {
+        return new self(TokenKind::Minus);
+    }
+
     public function __toString(): string
     {
         return match ($this->kind) {
@@ -111,6 +116,7 @@ final class Token implements Stringable
             TokenKind::QuestionMark => '?',
             TokenKind::Identifier => $this->contents,
             TokenKind::Equals => '=',
+            TokenKind::Minus => '-',
         };
     }
 }

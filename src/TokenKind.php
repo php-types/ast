@@ -22,4 +22,5 @@ enum TokenKind
     case QuestionMark;
     case Identifier;
     case Equals;
+    case Minus;
 }

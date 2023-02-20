@@ -48,5 +48,6 @@ final class InvalidTypesTest extends TestCase
         yield 'Unexpected end of struct member list after key' => ['array{foo'];
         yield 'Struct key with type argument' => ['array{list<int>: string}'];
         yield 'Tuple as struct member key' => ['array{array{bool}: string}'];
+        yield 'Minus in int literal' => ['42-23'];
     }
 }

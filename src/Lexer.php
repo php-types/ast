@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace PhpTypes\Ast;
 
 use PhpTypes\Ast\Exception\SyntaxError;
-use RuntimeException;
+
 use function in_array;
 
 final class Lexer
@@ -46,6 +46,7 @@ final class Lexer
                 '&' => Token::ampersand(),
                 '?' => Token::questionMark(),
                 '=' => Token::equals(),
+                '-' => Token::minus(),
                 default => null,
             };
             if ($token !== null) {
