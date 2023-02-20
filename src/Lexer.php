@@ -94,7 +94,6 @@ final class Lexer
         return Token::integer((int)$contents);
     }
 
-
     /**
      * @param Cursor<string> $chars
      * @param iterable<mixed, string> $chars

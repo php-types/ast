@@ -6,6 +6,7 @@ namespace PhpTypes\Ast\Tests\Functional;
 
 use PhpTypes\Ast\Parser;
 use PHPUnit\Framework\TestCase;
+
 use function is_int;
 use function is_numeric;
 use function sprintf;
