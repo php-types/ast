@@ -96,7 +96,6 @@ final class Lexer
 
     /**
      * @param Cursor<string> $chars
-     * @param iterable<mixed, string> $chars
      */
     private static function whitespace(Cursor $chars): Token
     {
@@ -123,7 +122,7 @@ final class Lexer
         $contents = '';
         while (true) {
             $char = $chars->peek();
-            if ($char === null || self::isWhitespace($char) || in_array($char, ['<', '>', ':', ',', '(', ')', '{', '}', '|', '&', '?', '='])) {
+            if ($char === null || self::isWhitespace($char) || in_array($char, ['<', '>', ':', ',', '(', ')', '{', '}', '|', '&', '?', '='], true)) {
                 break;
             }
             $contents .= $chars->consume();

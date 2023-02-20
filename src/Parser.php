@@ -321,6 +321,9 @@ final class Parser
         return new UnionNode($node, self::parseTokens($tokens));
     }
 
+    /**
+     * @param Cursor<Token> $tokens
+     */
     private static function parseIntLiteral(Token $token, Cursor $tokens): IntLiteralNode
     {
         if ($token->kind === TokenKind::Integer) {
