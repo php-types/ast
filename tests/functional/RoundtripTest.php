@@ -71,6 +71,11 @@ final class RoundtripTest extends TestCase
                 },
             }
             PHP,
+            'array{name: int}' => <<<'PHP'
+                array{
+                    name: int,
+                }
+                PHP,
             // Tuple
             'array{string}',
             'array{string, int}',

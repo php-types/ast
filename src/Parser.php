@@ -259,6 +259,10 @@ final class Parser
             if ($token === null) {
                 throw new SyntaxError('Unexpected end of input');
             }
+            if ($token->kind === TokenKind::CloseBrace) {
+                $tokens->consume();
+                break;
+            }
             if ($token->kind !== TokenKind::Comma) {
                 throw new SyntaxError(sprintf('Expected , or }, got %s', $token));
             }
