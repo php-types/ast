@@ -10,6 +10,8 @@ use function in_array;
 
 final class Lexer
 {
+    private const NON_IDENTIFIER_CHARS = ['<', '>', ':', ',', '(', ')', '{', '}', '|', '&', '?', '='];
+
     /**
      * @param Cursor<string> $chars
      * @return iterable<int, Token>
@@ -122,11 +124,16 @@ final class Lexer
         $contents = '';
         while (true) {
             $char = $chars->peek();
-            if ($char === null || self::isWhitespace($char) || in_array($char, ['<', '>', ':', ',', '(', ')', '{', '}', '|', '&', '?', '='], true)) {
+            if ($char === null || self::isWhitespace($char) || !self::isIdentifierChar($char)) {
                 break;
             }
             $contents .= $chars->consume();
         }
         return Token::identifier($contents);
+    }
+
+    public static function isIdentifierChar(string $char): bool
+    {
+        return !in_array($char, self::NON_IDENTIFIER_CHARS, true);
     }
 }
