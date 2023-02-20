@@ -132,7 +132,7 @@ final class Lexer
         return Token::identifier($contents);
     }
 
-    public static function isIdentifierChar(string $char): bool
+    private static function isIdentifierChar(string $char): bool
     {
         return !in_array($char, self::NON_IDENTIFIER_CHARS, true);
     }
