@@ -1,8 +1,7 @@
 {
     "name": "php-types/ast",
     "require": {
-        "php": ">=8.1",
-        "antlr/antlr4-php-runtime": "^0.7.0"
+        "php": ">=8.1"
     },
     "require-dev": {
         "infection/infection": "^0.26.13",
