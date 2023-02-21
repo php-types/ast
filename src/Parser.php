@@ -209,14 +209,10 @@ final class Parser
             if ($token === null) {
                 throw new SyntaxError('Unexpected end of input');
             }
+            $tokens->consume();
             if ($token->kind === TokenKind::CloseBrace) {
-                $tokens->consume();
                 break;
             }
-            if ($token->kind !== TokenKind::Comma) {
-                throw new SyntaxError(sprintf('Expected , or }, got %s', $token));
-            }
-            $tokens->consume();
             $elements[] = self::parseTokens($tokens);
         }
         return new TupleNode($elements);

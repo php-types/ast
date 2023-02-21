@@ -31,6 +31,7 @@ final class RoundtripTest extends TestCase
         $cases = [
             // Callable
             'callable' => 'callable(): mixed',
+            'callable()' => 'callable(): mixed',
             'callable(): void',
             'callable(string): void',
             'callable(string, int): void',
