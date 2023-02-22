@@ -16,6 +16,7 @@ use PhpTypes\Ast\Node\StringLiteralNode;
 use PhpTypes\Ast\Node\StructNode;
 use PhpTypes\Ast\Node\TupleNode;
 use PhpTypes\Ast\Node\UnionNode;
+
 use function assert;
 use function in_array;
 use function mb_str_split;
