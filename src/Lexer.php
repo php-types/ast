@@ -36,8 +36,8 @@ final class Lexer
                 continue;
             }
             $token = match ($char) {
-                '<' => Token::lt(),
-                '>' => Token::gt(),
+                '<' => Token::openAngle(),
+                '>' => Token::closeAngle(),
                 ':' => Token::colon(),
                 ',' => Token::comma(),
                 '(' => Token::openParen(),

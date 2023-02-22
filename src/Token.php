@@ -27,12 +27,12 @@ final class Token implements Stringable
         return new self(TokenKind::Whitespace);
     }
 
-    public static function lt(): self
+    public static function openAngle(): self
     {
         return new self(TokenKind::OpenAngle);
     }
 
-    public static function gt(): self
+    public static function closeAngle(): self
     {
         return new self(TokenKind::CloseAngle);
     }

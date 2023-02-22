@@ -33,13 +33,18 @@ final class RoundtripTest extends TestCase
             'callable' => 'callable(): mixed',
             'callable()' => 'callable(): mixed',
             'callable(): void',
+            'callable( ): void' => 'callable(): void',
+            'callable() : void' => 'callable(): void',
             'callable(string): void',
             'callable(string, int): void',
             'callable(string, int=, bool=): void',
+            'callable(string= ,): void' => 'callable(string=): void',
+            'callable( string , int= , bool= ) : void' => 'callable(string, int=, bool=): void',
             // Identifier
             'string',
             'list<int>',
             'array<array-key, string>',
+            'array' => 'array<array-key, mixed>',
             'Foo<Bar, Baz, Qux>',
             'Maroon5',
             // Intersection
@@ -55,6 +60,7 @@ final class RoundtripTest extends TestCase
             '"foo"' => "'foo'",
             // Struct
             'array{}',
+            'array{ }' => 'array{}',
             <<<'PHP'
             array{
                 foo: string,
@@ -73,18 +79,27 @@ final class RoundtripTest extends TestCase
                 },
             }
             PHP,
-            'array{name: int}' => <<<'PHP'
+            'array{ name : string , age? : int }' => <<<'PHP'
                 array{
-                    name: int,
+                    name: string,
+                    age?: int,
+                }
+                PHP,
+            'array{name:string,age?:int}' => <<<'PHP'
+                array{
+                    name: string,
+                    age?: int,
                 }
                 PHP,
             // Tuple
             'array{string}',
             'array{string, int}',
             'array{string, int, bool}',
+            'array{ string , int , bool }' => 'array{string, int, bool}',
             // Union
             'string | int',
             'string | int | bool',
+            '"foo" | \'bar\'' => "'foo' | 'bar'",
         ];
         foreach ($cases as $from => $to) {
             if (is_int($from)) {

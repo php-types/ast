@@ -11,7 +11,7 @@ use Generator;
  */
 final class Cursor
 {
-    /** @var T|null  */
+    /** @var T|null */
     private mixed $current = null;
     /** @var Generator<mixed, T> */
     private readonly Generator $items;
@@ -21,10 +21,7 @@ final class Cursor
      */
     public function __construct(iterable $items)
     {
-        if (!$items instanceof Generator) {
-            $items = self::toGenerator($items);
-        }
-        $this->items = $items;
+        $this->items = self::toGenerator($items);
         foreach ($this->items as $item) {
             $this->current = $item;
             break;
@@ -44,6 +41,7 @@ final class Cursor
 
     /**
      * @return T | null
+     * @psalm-immutable
      */
     public function peek(): mixed
     {

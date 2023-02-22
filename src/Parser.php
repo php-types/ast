@@ -16,7 +16,6 @@ use PhpTypes\Ast\Node\StringLiteralNode;
 use PhpTypes\Ast\Node\StructNode;
 use PhpTypes\Ast\Node\TupleNode;
 use PhpTypes\Ast\Node\UnionNode;
-
 use function assert;
 use function in_array;
 use function mb_str_split;
@@ -75,7 +74,6 @@ final class Parser
     {
         assert($name !== '');
         $typeParameters = [];
-        self::skipWhitespace($tokens);
         $token = $tokens->peek();
         if ($token === null) {
             return new IdentifierNode($name);
@@ -83,9 +81,7 @@ final class Parser
         if ($token->kind === TokenKind::OpenAngle) {
             $tokens->consume();
             while (true) {
-                self::skipWhitespace($tokens);
                 $typeParameters[] = self::parseTokens($tokens);
-                self::skipWhitespace($tokens);
                 $token = $tokens->peek();
                 if ($token === null) {
                     throw new SyntaxError('Unexpected end of input');
@@ -108,7 +104,6 @@ final class Parser
      */
     private static function parseCallable(Cursor $tokens): CallableNode
     {
-        self::skipWhitespace($tokens);
         $token = $tokens->peek();
         if ($token?->kind !== TokenKind::OpenParen) {
             return new CallableNode(new IdentifierNode('mixed'));
@@ -142,7 +137,7 @@ final class Parser
                 break;
             }
             if ($token->kind !== TokenKind::Comma) {
-                throw new SyntaxError(sprintf('Expected , or ), got %s', $token));
+                throw new SyntaxError(sprintf('Expected "=", "," or ")", got "%s"', $token));
             }
             $tokens->consume();
         }
@@ -152,7 +147,6 @@ final class Parser
             return new CallableNode(new IdentifierNode('mixed'), $parameters);
         }
         $tokens->consume();
-        self::skipWhitespace($tokens);
         $returnType = self::parseTokens($tokens);
         return new CallableNode($returnType, $parameters);
     }
@@ -166,8 +160,7 @@ final class Parser
         return match ($token?->kind) {
             TokenKind::OpenBrace => self::parseStructOrTuple($tokens),
             TokenKind::OpenAngle => self::parseIdentifier('array', $tokens),
-            null => new IdentifierNode('array'),
-            default => new IdentifierNode('array'),
+            default => new IdentifierNode('array', [new IdentifierNode('array-key'), new IdentifierNode('mixed')]),
         };
     }
 
@@ -187,7 +180,6 @@ final class Parser
             return new TupleNode([]);
         }
         $first = self::parseTokens($tokens);
-        self::skipWhitespace($tokens);
         $token = $tokens->peek();
         if ($token === null) {
             throw new SyntaxError('Unexpected end of input');
@@ -204,15 +196,18 @@ final class Parser
     {
         $elements = [$first];
         while (true) {
-            self::skipWhitespace($tokens);
             $token = $tokens->peek();
             if ($token === null) {
                 throw new SyntaxError('Unexpected end of input');
             }
-            $tokens->consume();
             if ($token->kind === TokenKind::CloseBrace) {
+                $tokens->consume();
                 break;
             }
+            if ($token->kind !== TokenKind::Comma) {
+                throw new SyntaxError(sprintf('Expected , or }, got %s', $token));
+            }
+            $tokens->consume();
             $elements[] = self::parseTokens($tokens);
         }
         return new TupleNode($elements);
@@ -242,7 +237,7 @@ final class Parser
             self::skipWhitespace($tokens);
             $token = $tokens->peek();
             if ($token?->kind !== TokenKind::Colon) {
-                throw new SyntaxError(sprintf('Expected : or }, got %s', $token));
+                throw new SyntaxError(sprintf('Expected ?, : or }, got %s', $token));
             }
             $tokens->consume();
             $type = self::parseTokens($tokens);
@@ -251,7 +246,6 @@ final class Parser
             } else {
                 $members[$key] = StructMember::required($type);
             }
-            self::skipWhitespace($tokens);
             $token = $tokens->peek();
             if ($token === null) {
                 throw new SyntaxError('Unexpected end of input');
@@ -332,6 +326,6 @@ final class Parser
         if ($token->kind !== TokenKind::Integer) {
             throw new SyntaxError(sprintf('Expected integer, got %s', $token));
         }
-        return new IntLiteralNode(-(int)$token->contents);
+        return new IntLiteralNode(-$token->contents); // @phpstan-ignore-line
     }
 }
